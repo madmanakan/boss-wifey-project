@@ -7,13 +7,12 @@ import undertaleBGM from './assets/undertale.mp3';
 import undyneSFX from './assets/undyne.mp3'; 
 
 function Page12({ onBack, onReveal }) { 
-  // State management for phases
-  const [phase, setPhase] = useState('start'); // 'start', 'typing', 'waiting_reveal', 'revealed'
+  const [phase, setPhase] = useState('start');
   const [displayedText, setDisplayedText] = useState("");
   
   const fullText = `HHabang binubuo ko itong website para sa'yo, Boss...
 Naalala ko na may tinago akong letter sa discord archive ko.
-Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo. Isang araw bago mag-Valentine's.
+Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo sa Litmatch. Isang araw bago mag-Valentine's.
 Lasing ako nun. Tahimik. Malungkot. Nag-iisa.
 
 Pero bigla akong napangiti...
@@ -24,7 +23,7 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
   const bgmRef = useRef(new Audio(undertaleBGM));
   const sfxRef = useRef(new Audio(undyneSFX));
 
-  // 🎵 Play Undertale BGM on Mount (Looping)
+  // 🎵 Play Undertale BGM
   useEffect(() => {
     const bgm = bgmRef.current;
     bgm.volume = 0.5;
@@ -41,7 +40,7 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
     };
   }, []);
 
-  // ⌨️ Typewriter Logic (Runs only when phase is 'typing')
+  // ⌨️ Typewriter Logic
   useEffect(() => {
     if (phase !== 'typing') return;
 
@@ -54,7 +53,7 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
     const intervalId = setInterval(() => {
       if (index >= fullText.length) {
         clearInterval(intervalId);
-        setPhase('waiting_reveal'); // Tapos na mag-type, wait for click to reveal
+        setPhase('waiting_reveal');
         return;
       }
 
@@ -72,16 +71,19 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
     return () => clearInterval(intervalId);
   }, [phase, fullText]);
 
-  // 🔥 MAIN CLICK HANDLER (Controls Flow)
+  // 🔥 MAIN CLICK HANDLER
   const handleScreenClick = () => {
     if (phase === 'start') {
-      // From "Touch to continue" -> Start Typewriter
       setPhase('typing');
     } else if (phase === 'waiting_reveal') {
-      // From "Typewriter Done" -> Reveal Everything
       setPhase('revealed');
       
-      // Stop Undertale Music immediately
+      // 🔥 FIX 1: FORCE STOP UNDYNE SFX & BGM AGAD-AGAD
+      if (sfxRef.current) {
+        sfxRef.current.pause();
+        sfxRef.current.currentTime = 0;
+      }
+      
       if (bgmRef.current) {
         bgmRef.current.pause();
         bgmRef.current.currentTime = 0;
@@ -108,10 +110,9 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
         className="absolute inset-0 z-0"
       >
         <img src={sdvFrontBG} className="w-full h-full object-cover" alt="BG" />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </motion.div>
 
-      {/* 🔙 BACK BUTTON */}
       {phase === 'revealed' && (
         <motion.button 
           initial={{ opacity: 0 }}
@@ -124,10 +125,8 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
         </motion.button>
       )}
 
-      {/* 📝 CONTENT CONTAINER */}
       <div className="z-10 w-full max-w-2xl p-6 relative flex flex-col items-center justify-center text-center">
         
-        {/* PHASE 0: INITIAL START PROMPT */}
         {phase === 'start' && (
           <motion.div 
             initial={{ opacity: 0 }} 
@@ -141,7 +140,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
           </motion.div>
         )}
 
-        {/* PHASE 1: TYPEWRITER TEXT */}
         {(phase === 'typing' || phase === 'waiting_reveal') && (
           <div className="text-left w-full">
             <p className="text-white text-lg md:text-2xl leading-relaxed whitespace-pre-wrap tracking-wide drop-shadow-md font-bold">
@@ -149,7 +147,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
               <span className="animate-pulse inline-block w-2 h-6 md:h-8 bg-white ml-1 align-middle"></span> 
             </p>
 
-            {/* Show prompt again only when typing is done */}
             <AnimatePresence>
               {phase === 'waiting_reveal' && (
                 <motion.div 
@@ -166,7 +163,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
           </div>
         )}
 
-        {/* PHASE 2: DISCORD REVEAL - CENTERED & STATIC */}
         {phase === 'revealed' && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -178,7 +174,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
               "THE PROPHECY (FEB 13, 2023)"✨
             </h1>
 
-            {/* 🔥 STATIC CENTERED IMAGE CONTAINER */}
             <div className="flex justify-center w-full">
               <div className="bg-[#2f3136] p-2 rounded-lg border-4 border-[#7289da] shadow-2xl max-w-lg w-full">
                 <img 
@@ -189,24 +184,47 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
               </div>
             </div>
 
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2 }}
               className="text-white/90 mt-10 text-center italic text-sm md:text-lg max-w-md font-sans font-medium mx-auto leading-relaxed"
             >
-              "Isang araw bago mag-Valentines noong 2023, lasing ako nito habang nanonood ng CS:GO. Wala ka pa sa buhay ko, pero nangako na ako sa sarili ko na pag dumating yung 'The One', irerespeto ko siya nang buong-buo at ipapabasa ko sa kanya 'to."
-              <br /><br />
-              "Boss, ikaw pala 'yung tinutukoy ko dito. Ikaw pala yung Waifu IRL na hinihintay ko."
-              <br /><br />
-              "Tinupad ko na yung promise ko haa? Binabasa mo na siya ngayon. PROMISE FULFILLED. ✅ (Angas mag-english eh no, pag lasing tsaka lumalabas yung english spokening na mali mali pa ang grammarist nyan sha HAHAHAH!)"
-            </motion.p>
+              <p className="mb-6">
+                "Isang araw bago mag-Valentines noong 2023, lasing ako nito habang nanonood ng CS:GO. Wala ka pa sa buhay ko, pero nangako na ako sa sarili ko na pag dumating yung 'The One', irerespeto ko siya nang buong-buo at ipapabasa ko sa kanya 'to."
+              </p>
+              <p className="mb-6">
+                "Boss, ikaw pala 'yung tinutukoy ko dito. Ikaw pala yung Waifu IRL na hinihintay ko."
+              </p>
+              <p className="mb-8">
+                "Tinupad ko na yung promise ko haa? Binabasa mo na siya ngayon. PROMISE FULFILLED. ✅ (Angas mag-english eh no, pag lasing tsaka lumalabas yung english spokening na mali mali pa ang grammarist nyan sha HAHAHAH!)"
+              </p>
+
+              {/* 🔥 PAHÁBOL SECTION - REVISED & BRIGHTER */}
+              <div className="border-t-2 border-white/20 pt-6">
+                <p className="font-black text-[#7289da] mb-2 uppercase tracking-wide">Pahabol pala, Boss:</p>
+                <p className="mb-4">
+                  Naalala mo nung tinanong mo ako sa call dati? (February din 'yun!) Ang tanong mo: 'Pag lasing ka ba, nagiging horny ka?'
+                </p>
+                <p className="mb-4">
+                  Boss, basahin mo ulit 'yung letter sa taas. Bago mo pa ako tanungin, nasagot na ng Past Self ko 'yan.
+                </p>
+                <p className="mb-4">
+                  Alam nating karamihan ng lalaki, sex lang ang habol lalo na pag nakainom. Pero eto ang patunay... Kahit lasing ako, ang default setting ng utak ko ay RESPETO at PROTEKSYON para sa Waifu/Asawa ko.
+                </p>
+                
+                {/* 🔥 FIX 2: SUPER BRIGHT TEXT WITH SHADOW */}
+                <p className="font-black text-white text-lg md:text-xl drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+                  Kaya lasing man o hindi, hinding-hindi kita sasaktan o sasamantalahin. Safe na safe ka sa akin, habambuhay. 🛡️❤️
+                </p>
+              </div>
+            </motion.div>
              
              <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 4 }}
-              className="text-[#7289da] mt-8 text-xs font-black uppercase tracking-widest text-center"
+              className="text-[#7289da] mt-10 text-xs font-black uppercase tracking-widest text-center"
             >
               — 😊😊 —
             </motion.p>
