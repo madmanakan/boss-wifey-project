@@ -45,7 +45,7 @@ function Page11({ onNext, onBack }) {
   ];
 
   const paymentOptions = [
-    { id: 'gkiss', label: 'G-Kiss (Kiss sa Cheeks/Lipstulipsgit )', icon: '💋' },
+    { id: 'gkiss', label: 'G-Kiss (Kiss sa Cheeks/Lipstulips)', icon: '💋' },
     { id: 'mayakap', label: 'Maya-kap (Yakap na Mahigpit)', icon: '🤗' },
     { id: 'cashondate', label: 'Cash on Date (Ililibre mo ko next date)', icon: '💸' },
   ];
