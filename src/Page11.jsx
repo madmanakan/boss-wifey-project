@@ -40,7 +40,7 @@ function Page11({ onNext, onBack }) {
     { id: 4, img: royalblue, title: "The Rona Blue Rose (Special)", desc: "Hindi nabibili ng pera. Exclusive lang para sa nag-iisang Boss ng buhay ko.", price: "PRICELESS", disabled: true },
     { id: 5, img: whitelily, title: "The 'Pure Intentions' Lily", desc: "Dahil malinis ang hangarin ko sayo, Boss. (Naks!)", price: 700 },
     { id: 6, img: peony, title: "The 'Ganda Mo' Peony", desc: "Kasing ganda mo 'to. Wala nang ibang description.", price: 900 },
-    { id: 7, img: carnation, title: "The 'Kilig' Carnation", desc: "Para kiligin ka naman sakin kahit konti. Hahaha.", price: 550 },
+    { id: 7, img: carnation, title: "The 'Kilig' Carnation", desc: "Para kiligin ka naman sakin kahit konti. BLEEHH.", price: 550 },
     { id: 8, img: driedmisty, title: "The 'Forever' Misty", desc: "Tuyot pero maganda pa rin, tulad pagmamahal ko sayo, walang hangganan.", price: 500 },
   ];
 
@@ -60,10 +60,10 @@ function Page11({ onNext, onBack }) {
     if (paymentMethod) {
       setShowSuccess(true);
       setSelectedFlower(null);
-      // 🔥 Modified logic: Close success modal after 5s, then show arrow
+      // 🔥 Logic: Close success modal after 5s, then show SINGLE arrow
       setTimeout(() => {
         setShowSuccess(false);
-        setShowArrow(true); // Litaw ang arrow after success
+        setShowArrow(true); 
       }, 5000);
     }
   };
@@ -86,42 +86,38 @@ function Page11({ onNext, onBack }) {
         ⬅ BACK
       </motion.button>
 
-      {/* 🔥 SWIPE ARROW COMPONENT (Walang Text, Arrow Lang) */}
+      {/* 🔥 SWIPE ARROW COMPONENT (FIXED: SOBRANG LIIT & MAY HOVER TIP) */}
       <AnimatePresence>
         {showArrow && (
            <motion.div
-             initial={{ x: 100, opacity: 0 }}
+             initial={{ x: 50, opacity: 0 }}
              animate={{ x: 0, opacity: 1 }}
-             // Fixed position sa Middle-Right
-             className="fixed top-1/2 right-2 md:right-8 transform -translate-y-1/2 z-[300]"
+             className="fixed top-1/2 right-2 transform -translate-y-1/2 z-[300]"
            >
-             {/* DRAGGABLE INVISIBLE CONTAINER WITH VISIBLE ARROWS */}
+             {/* DRAGGABLE CONTAINER */}
              <motion.div
                 drag="x"
-                dragConstraints={{ left: -300, right: 0 }} // Pwede hatakin pakaliwa
+                dragConstraints={{ left: -300, right: 0 }}
                 dragElastic={0.2}
                 onDragEnd={(e, { offset }) => {
-                   // Pag hinatak ng malayo-layo (negative x), Next Page na
-                   if (offset.x < -100) {
+                   if (offset.x < -50) { 
                       onNext();
                    }
                 }}
-                className="cursor-grab active:cursor-grabbing p-4"
+                className="cursor-grab active:cursor-grabbing p-4 group relative flex items-center justify-center"
              >
-                {/* Eto yung Visuals: < < < */}
+                {/* 💬 TOOLTIP ON HOVER (Lalabas pag tinapatan) */}
+                <span className="absolute -top-8 right-0 bg-white text-black text-[10px] font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-gray-400">
+                  ???
+                </span>
+
+                {/* Visuals: SUPER SUBTLE ARROW */}
                 <motion.div 
-                  animate={{ x: [0, -15, 0] }} // Gumagalaw pakaliwa para ituro ang direction
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  className="flex items-center space-x-[-10px]" // Magkakadikit na arrows
+                  animate={{ x: [0, -3, 0] }} // 🔥 Galaw: 3px lang (Sobrang pino)
+                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
-                  {/* Tatlong malinaw na 'Less Than' signs */}
-                  <span className="text-6xl md:text-8xl font-black text-white drop-shadow-[0_0_15px_rgba(255,0,0,0.9)] opacity-100">
-                    ‹
-                  </span>
-                  <span className="text-6xl md:text-8xl font-black text-white drop-shadow-[0_0_15px_rgba(255,0,0,0.9)] opacity-70">
-                    ‹
-                  </span>
-                  <span className="text-6xl md:text-8xl font-black text-white drop-shadow-[0_0_15px_rgba(255,0,0,0.9)] opacity-40">
+                  {/* 🔥 Size: text-3xl (Maliit), Opacity: text-white/20 (Madilim/Malabo) */}
+                  <span className="text-3xl font-black text-white/30 drop-shadow-sm hover:text-white/80 transition-colors">
                     ‹
                   </span>
                 </motion.div>
@@ -142,26 +138,26 @@ function Page11({ onNext, onBack }) {
               BOSS RONA'S DIGITAL FLOWER SHOP 🥀💻
             </h1>
             <p className="text-[#3a2a1a] text-lg font-bold italic leading-relaxed mb-8">
-              "Sana malapit lang ako sayo boss para maabot sayo ang bulaklak this Valentines Day, dito ko muna idadaan ang pagbigay sayo ng iba't ibang variant ng flowers. :P"
+              "Sana malapit lang ako sayo boss para maabot sayo ang bulaklak this Valentines Day, dito ko muna idadaan ang pagbigay sayo ng iba't ibang variant ng flowers. 🥺"
             </p>
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowShop(true)}
               className="bg-[#489512] border-4 border-[#244a09] text-white px-8 py-3 font-black text-lg shadow-lg animate-bounce uppercase"
             >
-              PASOK KA DITO, BOSS! 👉
+              PASOK IKAW DITO, BOSS! 👉
             </motion.button>
           </motion.div>
         ) : (
           <>
-            {/* 🔥 NEW GUIDE TEXT HERE PRE */}
+            {/* GUIDE TEXT */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               className="mb-6 bg-[#fbf0d5] border-4 border-[#72432d] px-6 py-2 rounded-full shadow-lg text-center"
             >
               <p className="text-[#ad261d] font-black text-sm md:text-lg uppercase tracking-wider animate-pulse flex items-center gap-2">
-                👇 PILI KA NG FLOWERS MO DYAN, BOSS! 💐
+                👇 PILI IKAW NG FLOWERS MO DYAANN!!! 💐
               </p>
             </motion.div>
 

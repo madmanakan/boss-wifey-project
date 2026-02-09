@@ -21,7 +21,7 @@ function Page8({ onNext, onBack }) {
     { 
       img: pic2, 
       // 🔥 FIXED: Nilagyan ko ng \n\n para bumaba yung text at maging paragraph
-      text: "OOOOHHH, lakas talaga oh! Lalo na yung nasa Top 3, grabe ang ganda ng name ng baril... default daw dapat yun sabi mo non? (Nyenyenye, kala mo ah! 😝)\n\nWala, miss ko na ang SR God at ang nag-iisang Registered Nurse (RNLARE 😝) ng buhay kooo." 
+      text: "OOOOHHH, lakas talaga oh! Lalo na yung nasa Top 3, grabe ang ganda ng name ng baril... default daw dapat yun sabi mo non? (Nyenyenye, kala mo ah! 😝)\n\nWala, miss ko na ang SR God at ang nag-iisang Registered Nurse (rnlare) ng buhay kooo 😝." 
     },
     { 
       img: pic3, 

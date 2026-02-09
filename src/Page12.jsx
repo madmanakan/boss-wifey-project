@@ -5,23 +5,52 @@ import sdvFrontBG from './assets/sdv_front_background2.jpg';
 import discordImg from './assets/discord.jpg';
 import undertaleBGM from './assets/undertale.mp3';
 import undyneSFX from './assets/undyne.mp3'; 
+import marioSFX from './assets/mario.mp3'; 
 
 function Page12({ onBack, onReveal }) { 
   const [phase, setPhase] = useState('start');
   const [displayedText, setDisplayedText] = useState("");
+  const [showAchievement, setShowAchievement] = useState(false);
+  
+  // 🔥 New State: Para i-lock ang click habang may notification
+  const [isInteractionAllowed, setIsInteractionAllowed] = useState(false);
   
   const fullText = `HHabang binubuo ko itong website para sa'yo, Boss...
 Naalala ko na may tinago akong letter sa discord archive ko.
-Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo sa Litmatch. Isang araw bago mag-Valentine's.
+Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo. Isang araw bago mag-Valentine's.
 Lasing ako nun. Tahimik. Malungkot. Nag-iisa.
 
 Pero bigla akong napangiti...
 Dahil hindi ko inakala na tutuparin pala ni God ang hiling ko sa dilim na 'yun.
 
-Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
+Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko. 
+At eto ang patunay.`;
 
   const bgmRef = useRef(new Audio(undertaleBGM));
   const sfxRef = useRef(new Audio(undyneSFX));
+  const marioRef = useRef(new Audio(marioSFX)); 
+
+  // 🏆 ACHIEVEMENT UNLOCKED LOGIC + CLICK BLOCKER
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // 1. Play Mario Sound
+      const mario = marioRef.current;
+      mario.volume = 0.5;
+      mario.play().catch(() => {});
+
+      // 2. Show Notification
+      setShowAchievement(true);
+
+      // 3. Hide Notification after 4 seconds AND ALLOW CLICKING
+      setTimeout(() => {
+        setShowAchievement(false);
+        setIsInteractionAllowed(true); // 🔥 Ngayon lang pwede pumindot
+      }, 4000);
+
+    }, 1000); // 1 Second Delay bago lumabas notification
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // 🎵 Play Undertale BGM
   useEffect(() => {
@@ -73,12 +102,14 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
 
   // 🔥 MAIN CLICK HANDLER
   const handleScreenClick = () => {
+    // 🛑 HARANG: Kung hindi pa tapos ang achievement notif, bawal pumindot
+    if (!isInteractionAllowed) return;
+
     if (phase === 'start') {
       setPhase('typing');
     } else if (phase === 'waiting_reveal') {
       setPhase('revealed');
       
-      // 🔥 FIX 1: FORCE STOP UNDYNE SFX & BGM AGAD-AGAD
       if (sfxRef.current) {
         sfxRef.current.pause();
         sfxRef.current.currentTime = 0;
@@ -89,7 +120,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
         bgmRef.current.currentTime = 0;
       }
 
-      // Resume Main Music
       if (onReveal) {
         onReveal();
       }
@@ -102,6 +132,29 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
       onClick={handleScreenClick}
     >
       
+      {/* 🏆 ACHIEVEMENT NOTIFICATION POPUP */}
+      <AnimatePresence>
+        {showAchievement && (
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="absolute top-8 z-[200] flex items-center gap-3 bg-black/80 border-4 border-yellow-400 px-6 py-4 rounded-lg shadow-[0_0_20px_rgba(255,215,0,0.6)]"
+          >
+            <span className="text-4xl animate-bounce">🏆</span>
+            <div className="flex flex-col">
+              <span className="text-yellow-400 font-black text-xs uppercase tracking-widest mb-1">
+                SECRET PAGE UNLOCKED!
+              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 font-black text-lg md:text-xl tracking-tighter uppercase drop-shadow-sm">
+                CONFIDENTIAL FILE: FOR MY ONE AND ONLY BOSS RONA 📂
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 🖼️ BACKGROUND REVEAL */}
       <motion.div 
         initial={{ opacity: 0 }}
@@ -127,7 +180,8 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
 
       <div className="z-10 w-full max-w-2xl p-6 relative flex flex-col items-center justify-center text-center">
         
-        {phase === 'start' && (
+        {/* 🔥 PROMPT: Show ONLY when interaction is allowed */}
+        {phase === 'start' && isInteractionAllowed && (
           <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }}
@@ -200,7 +254,6 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
                 "Tinupad ko na yung promise ko haa? Binabasa mo na siya ngayon. PROMISE FULFILLED. ✅ (Angas mag-english eh no, pag lasing tsaka lumalabas yung english spokening na mali mali pa ang grammarist nyan sha HAHAHAH!)"
               </p>
 
-              {/* 🔥 PAHÁBOL SECTION - REVISED & BRIGHTER */}
               <div className="border-t-2 border-white/20 pt-6">
                 <p className="font-black text-[#7289da] mb-2 uppercase tracking-wide">Pahabol pala, Boss:</p>
                 <p className="mb-4">
@@ -213,9 +266,8 @@ Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko.`;
                   Alam nating karamihan ng lalaki, sex lang ang habol lalo na pag nakainom. Pero eto ang patunay... Kahit lasing ako, ang default setting ng utak ko ay RESPETO at PROTEKSYON para sa Waifu/Asawa ko.
                 </p>
                 
-                {/* 🔥 FIX 2: SUPER BRIGHT TEXT WITH SHADOW */}
                 <p className="font-black text-white text-lg md:text-xl drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-                  Kaya lasing man o hindi, hinding-hindi kita sasaktan o sasamantalahin. Safe na safe ka sa akin, habambuhay. 🛡️❤️
+                  Kaya lasing man o hindi, hinding-hindi ko magagawang saktan ka at samantalahin. Safe na safe ka sa akin, habambuhay. 🛡️❤️
                 </p>
               </div>
             </motion.div>
