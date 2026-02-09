@@ -43,7 +43,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Tsaka yung boses mo... Sa tagal na nating naglalaro na naka-open mic at nag-v-vm tayo, matagal ko nang gusto ko sabihin sa'yo na sobrang lambing. Di ko malaman kung bumagay ba sa pagiging maldita mo Boss, pero ang sarap pakinggan talaga lalo na nung nag-uusap tayo. For sure magaling ka kumanta noh? Sample nga ng isang <b>'Cruel Summer'</b> ni Taylor Swift dyan! 😝
+        &nbsp; &nbsp; &nbsp; &nbsp; Tsaka yung boses mo... Sa tagal na nating naglalaro na naka-open mic at nag-v-vm tayo, matagal ko nang gusto sabihin sa'yo na sobrang lambing. Di ko malaman kung bumagay ba sa pagiging maldita mo Boss, pero ang sarap pakinggan talaga lalo na nung nag-uusap tayo. For sure magaling ka kumanta noh? Sample nga ng isang <b>'Cruel Summer'</b> ni Taylor Swift dyan! 😝
       </p>
 
       <p>
