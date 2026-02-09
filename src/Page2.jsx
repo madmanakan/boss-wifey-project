@@ -38,24 +38,25 @@ function Page2({ onSuccess, onBack }) {
         ⬅️ BACK
       </button>
 
-      {/* 🎧 UPDATED ADVISORY: MALAKI, MALINAW, AT PANTAY NA PRE! */}
-      {/* 🎧 FIXED ADVISORY: SAKTO NA 'TO PRE! */}
-<motion.div 
-  initial={{ y: -30, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ type: "spring", stiffness: 100 }}
-  className="z-20 mb-6 bg-black/75 backdrop-blur-md border-2 border-yellow-500/50 px-6 py-3 rounded-lg flex items-center justify-center gap-4 shadow-xl max-w-md w-fit mx-auto"
->
-  <span className="text-2xl animate-pulse">🎧</span>
-  <div className="flex flex-col text-left">
-    <span className="text-yellow-500 text-[10px] md:text-xs font-black uppercase tracking-widest mb-0.5">
-      ⚠️ ADVISORY:
-    </span>
-    <p className="text-white text-sm md:text-base font-bold leading-tight tracking-tight">
-      Use earphones/headphones for the best experience. <br className="hidden md:block"/> Hayaan mong dalhin ka ng musika sa mundo nating dalawa. 😊
-    </p>
-  </div>
-</motion.div>
+      {/* 🎧 FIXED ADVISORY: CENTERED, MADILIM, & SAKTO LANG ANG LAKI */}
+      <motion.div 
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        // 🔥 bg-black/90 para madilim, text-center & items-center para gitna lahat
+        className="z-20 mb-6 bg-black/90 backdrop-blur-md border-2 border-yellow-500/50 px-6 py-3 rounded-lg flex items-center justify-center gap-4 shadow-xl max-w-md w-fit mx-auto"
+      >
+        <span className="text-2xl animate-pulse">🎧</span>
+        <div className="flex flex-col items-center text-center"> {/* 🔥 CENTERED NA DITO PRE */}
+          <span className="text-yellow-500 text-[10px] md:text-xs font-black uppercase tracking-widest mb-0.1">
+          ⚠️ ADVISORY:
+          </span>
+          <p className="text-white text-sm font-bold leading-tight tracking-tight">
+            Use earphones/headphones for the best experience aking boss. <br className="hidden md:block"/> 
+            Hayaan mong dalhin ka ng musika sa mundo nating dalawa. 😊
+          </p>
+        </div>
+      </motion.div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}

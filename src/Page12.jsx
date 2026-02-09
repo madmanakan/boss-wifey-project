@@ -148,7 +148,7 @@ At eto ang patunay.`;
                 SECRET PAGE UNLOCKED!
               </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 font-black text-lg md:text-xl tracking-tighter uppercase drop-shadow-sm">
-                CONFIDENTIAL FILE: FOR MY ONE AND ONLY BOSS RONA 📂
+                CONFIDENTIAL FILE: FOR MY ONE AND ONLY BOSS RONA! 📂
               </span>
             </div>
           </motion.div>
