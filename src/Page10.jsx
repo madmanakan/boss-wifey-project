@@ -35,11 +35,11 @@ function Page10({ onNext, onBack }) {
       <p>
         &nbsp; &nbsp; &nbsp; &nbsp; HAHAHAHA! Sige, deal 'yan. Tabi kami ni Tito matulog habang kinukwento ko sa kanya kung gaano ko ka-mahal... at kung gaano ko gustong pakasalan ang nag-iisa at sobrang ganda niyang anak. (Kala mo ah! 😝)
 
-        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa QC at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin hindi lang sa Tanza kundi sa buong Cavite (HAHAHAHA 😝). Manifesting 'yan! ✨
+        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa Quezon City at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin, hindi lang sa Tanza kundi sa buong Cavite (HAHAHAHA 😝). Manifesting 'yan! ✨
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e... ikaw na talaga 😝. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
+        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e.. ikaw na talaga 😇. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
       </p>
 
       <p>
@@ -102,7 +102,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Naalala mo yung sinabi mo after ko sayo tanungin na kung "akin kana ba?" Ang sagot mo sakin... "hindi muna ako makakapag-yes sayo ngayon, at wag muna natin limitahan ang lahat." Tama ka, Boss. Mag-focus tayo sa goals natin, mag-explore, mag-grow, at ang makapagtapos ako ng pag-aaral. Hintayin mo lang ako magkaroon ng masasabing stable job at maging financially stable. Naalala mo yung sinend mo saking TikTok reel dati na 'balang araw makakaalis din tayo sa zero days, sa ngayon pautang muna ako ng 1k'?
+        &nbsp; &nbsp; &nbsp; &nbsp; Naalala ko yung sinabi mo after ko sayo tanungin na kung "akin kana ba?" Ang sagot mo sakin... "hindi muna ako makakapag-yes sayo ngayon, at wag muna natin limitahan ang lahat." Tama ka, Boss. Mag-focus muna tayo sa goals natin, mag-explore, at mag-grow. Basta hintayin mo lang ako makapagtapos ng pag-aaral, magkaroon ng stable job, at talagang masasabing financially stable. Naalala mo yung sinend mo saking TikTok reel dati na 'balang araw makakaalis din tayo sa zero days, sa ngayon pautang muna ako ng 1k'?
         <br /><br />
         &nbsp; &nbsp; &nbsp; &nbsp; Wag ka mag-aalala Boss, hindi lang 1k kundi buong sahod ko na ibibigay ko sayo, ako nalang mangungutang sayo ng 1k. (HAHAHAHA BLEH!) Sisiguraduhin ko na lahat ng gusto natin at pangarap natin, makukuha natin. Wag ka mag-alala, andito lang ako nakasuporta sayo hanggang sa marinig ko mula sa mga labi mo ang matamis na 'oo'.
       </p>
