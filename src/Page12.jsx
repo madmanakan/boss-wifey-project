@@ -24,7 +24,7 @@ Pero bigla akong napangiti...
 Dahil hindi ko inakala na tutuparin pala ni God ang hiling ko sa dilim na 'yun.
 
 Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko. 
-At eto ang patunay.`;
+At eto ang patunay..`;
 
   const bgmRef = useRef(new Audio(undertaleBGM));
   const sfxRef = useRef(new Audio(undyneSFX));

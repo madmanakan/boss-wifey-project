@@ -88,10 +88,10 @@ function Page4({ onNext, onBack }) {
           </div>
         </motion.div>
 
-        {/* Updated Next Button */}
+        {/* 🔥 UPDATED NEXT BUTTON: TINAASAN AT MAY BOUNCE NA! */}
         <button 
           onClick={onNext}
-          className="mt-10 bg-[#634e34] border-4 border-[#3a2a1a] text-white px-8 py-2 font-bold hover:scale-105 active:scale-95 transition-all shadow-lg"
+          className="mt-6 bg-[#634e34] border-4 border-[#3a2a1a] text-white px-8 py-3 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-lg animate-bounce uppercase tracking-widest"
         >
           MAY ISA PA AKONG SURPRISE... 👉
         </button>
