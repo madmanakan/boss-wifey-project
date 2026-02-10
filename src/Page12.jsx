@@ -17,7 +17,7 @@ function Page12({ onBack, onReveal }) {
   
   const fullText = `HHabang binubuo ko itong website para sa'yo, Boss...
 Naalala ko na may tinago akong letter sa discord archive ko.
-Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo. Isang araw bago mag-Valentine's.
+Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo sa Litmatch. Isang araw bago mag-Valentine's.
 Lasing ako nun. Tahimik. Malungkot. Nag-iisa.
 
 Pero bigla akong napangiti...

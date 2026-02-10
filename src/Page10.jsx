@@ -94,7 +94,7 @@ function Page10({ onNext, onBack }) {
       <p>
         &nbsp; &nbsp; &nbsp; &nbsp; Gaya ng inamin ko nung first date natin habang hawak ko ang kamay mo at suot mo 'yung bracelet... oo, nag-try ako sa iba nung panahong wala tayong communication. Pero tinigil ko din agad.
 
-        Kasi napatunayan ko... ibang-iba ka sa kanila. Kahit anong gawin nila, hinding-hindi ka nila kayang higitan... at wala ring makakapantay sa'yo.
+        Kasi napatunayan ko... ibang-iba ka sa kanila. Kahit anong gawin nila, hinding-hindi ka nila kayang higitan at wala nang makakapantay sa'yo.
       </p>
 
       <p>
