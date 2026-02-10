@@ -119,7 +119,7 @@ function Page2({ onSuccess, onBack }) {
             animate={{ opacity: 1 }}
             className="mt-4 text-[#3a2a1a] text-sm text-center font-bold italic border-t-2 border-[#72432d]/20 pt-4"
           >
-            Hint: "😜😜" <br/>
+            Hint: "**20" <br/>
             (Yung araw ng kaarawan nating dalawa, bleehh!)
           </motion.p>
         )}
