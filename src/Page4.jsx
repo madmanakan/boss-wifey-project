@@ -84,7 +84,7 @@ function Page4({ onNext, onBack }) {
             kayang kaya natin patumbahin at harapin yan na parang pagsubok natin sa life."
           </p>
           <div className="mt-4 text-[#ad261d] font-bold">
-            — From your one and only soulmate. 🖤🤍
+            — From your Lover, Bestfriend, Protector, and your One and Only Soulmate. 🖤🤍
           </div>
         </motion.div>
 

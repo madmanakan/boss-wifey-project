@@ -16,7 +16,7 @@ function Page2({ onSuccess, onBack }) {
     if (passcode === "0920") {
       onSuccess();
     } else {
-      setError("Maling password, Boss. Subukan mo ulit! 🤨");
+      setError("ENGGKKK, MALI KA BOSS. May lalabas na icon/hint sa gilid after ng 2 tries! 😝");
       setPasscode("");
     }
   };
@@ -52,7 +52,7 @@ function Page2({ onSuccess, onBack }) {
           ⚠️ ADVISORY:
           </span>
           <p className="text-white text-sm font-bold leading-tight tracking-tight">
-            Use earphones/headphones for the best experience aking boss. <br className="hidden md:block"/> 
+            Use earphones/headphones for the best experience my boss. <br className="hidden md:block"/> 
             Hayaan mong dalhin ka ng musika sa mundo nating dalawa. 😊
           </p>
         </div>
