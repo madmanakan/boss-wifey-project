@@ -32,6 +32,9 @@ function App() {
   // Status kung tapos na ba ang drama sa Page 12
   const [isSecretIntroDone, setIsSecretIntroDone] = useState(false);
   
+  // 🔥 NEW STATE: Para malaman kung nagpe-play yung video sa Page 12
+  const [isSecretVideoPlaying, setIsSecretVideoPlaying] = useState(false);
+  
   const [playlist] = useState(() => {
     const tier1 = [
       { src: song1, title: "Begin Again - Taylor Swift" },
@@ -54,7 +57,6 @@ function App() {
 
   const audioRef = useRef(null);
 
-  // Helper function para sa initial play
   const handlePlayMusic = () => {
     if (!audioRef.current) {
       audioRef.current = new Audio(playlist[currentSongIndex].src);
@@ -70,15 +72,15 @@ function App() {
     }
   };
 
-  // 🔥 AUTO-RESET: Pag umalis sa Page 12, reset ang intro status para sa susunod
+  // 🔥 AUTO-RESET: Reset lahat pag umalis ng Page 12
   useEffect(() => {
     if (stage !== 12) {
       setIsSecretIntroDone(false);
+      setIsSecretVideoPlaying(false);
     }
   }, [stage]);
 
-  // 🔥 1. TRACK MANAGER: Updates Audio Source ONLY when index changes (Next Song)
-  // TANGGAL ANG [stage] DITO PARA DI MAG-RESET
+  // 🔥 1. TRACK MANAGER
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = playlist[currentSongIndex].src;
@@ -93,26 +95,39 @@ function App() {
     }
   }, [currentSongIndex, playlist]); 
 
-  // 🔥 2. STAGE MANAGER: Handles Play/Pause state ONLY
+  // 🔥 2. STAGE MANAGER (UPDATED LOGIC PARA SA VIDEO)
   useEffect(() => {
     if (!audioRef.current) return;
 
-    if (stage === 12 && !isSecretIntroDone) {
-      // SCENARIO: Pumasok sa Page 12 Intro -> PAUSE
-      audioRef.current.pause();
-      setShowNowPlaying(false);
+    if (stage === 12) {
+        if (!isSecretIntroDone) {
+            // Intro pa lang (Undertale), pause main music
+            audioRef.current.pause();
+            setShowNowPlaying(false);
+        } else {
+            // Reveal na! Check kung may video na nagpe-play
+            if (isSecretVideoPlaying) {
+                // 🛑 PAUSE MAIN MUSIC KASI NAG-P-PLAY SI KHAZY
+                audioRef.current.pause();
+                setShowNowPlaying(false);
+            } else {
+                // ✅ RESUME MAIN MUSIC (Tapos na video or di pa nag-play)
+                if (audioRef.current.paused) {
+                    audioRef.current.play().catch(e => console.log(e));
+                    setShowNowPlaying(true);
+                }
+            }
+        }
     } else {
-      // SCENARIO: Nasa Normal Page (1-11) OR Tapos na ang Intro (Page 12 Reveal)
-      // Check kung naka-pause, play natin. PERO WAG I-RELOAD (No .load())
+      // Normal Pages (1-11)
       if (audioRef.current.paused && audioRef.current.src) {
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) playPromise.catch(e => console.log(e));
         setShowNowPlaying(true);
       }
     }
-  }, [stage, isSecretIntroDone]); // Reacts only to page changes
+  }, [stage, isSecretIntroDone, isSecretVideoPlaying]); // Added isSecretVideoPlaying dep
 
-  // Timer notification
   useEffect(() => {
     if (showNowPlaying) {
       const timer = setTimeout(() => setShowNowPlaying(false), 10000); 
@@ -126,7 +141,7 @@ function App() {
     <main className="min-h-screen bg-black overflow-hidden relative">
       
       <AnimatePresence mode="wait">
-        {showNowPlaying && !(stage === 12 && !isSecretIntroDone) && (
+        {showNowPlaying && !(stage === 12 && (!isSecretIntroDone || isSecretVideoPlaying)) && (
           <motion.div
             key={currentSongIndex}
             initial={{ x: 300, opacity: 0 }}
@@ -163,6 +178,8 @@ function App() {
         <Page12 
           onBack={goBack} 
           onReveal={() => setIsSecretIntroDone(true)} 
+          // 🔥 PASSING THE CONTROLLER TO PAGE 12
+          onVideoPlay={(isPlaying) => setIsSecretVideoPlaying(isPlaying)}
         />
       )}
     </main>

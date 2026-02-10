@@ -39,7 +39,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e.. ikaw na talaga 😇. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
+        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e.. ikaw na talaga. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
       </p>
 
       <p>
@@ -47,7 +47,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Ikaw lang ang kaisa-isahang babae na sobrang patay na patay ako—hanggang sa pagtulog, ikaw pa rin ang iniisip ko kahit unan lang ang kayakap ko. Hinding-hindi mawawala sa isipan ko ang una nating pagkikita. Simula nung una mo sakin na pagkalabit sa likuran ko... nagulat talaga ako, akala ko may nakasanggi o bumangga lang sakin sabay sabi ng 'Hi Kyle' kaya nung moment na pagkalingon ko, wala na—yun na pala ang simula ng moment natin na hinding-hindi ko makakalimutan sa buong buhay ko (sabay bilis maglakad ih, kala mue ikaw lang ah, nyenyenye :P) hanggang sa pag-uwi nating dalawa... Hinahanap-hanap ko pa rin araw-araw yung magkasama tayo at yung pagyakap ko sayo (actually nahiya ako nun ih, sa susunod hihigpitan ko na, kala mo ah 😝).
+        &nbsp; &nbsp; &nbsp; &nbsp; Ikaw lang ang kaisa-isahang babae na sobrang patay na patay ako—hanggang sa pagtulog, ikaw pa rin ang iniisip ko kahit unan lang ang kayakap ko. Hinding-hindi mawawala sa isipan ko ang una nating pagkikita. Simula nung una mo sakin na pagkalabit sa likuran ko... nagulat talaga ako, akala ko may nakasanggi o bumangga lang sakin sabay sabi ng 'Hi Kyle' kaya nung moment na pagkalingon ko, wala na—yun na pala ang simula ng moment natin na hinding-hindi ko makakalimutan sa buong buhay ko (sabay bilis maglakad ih, kala mue ikaw lang ah, nyenyenye) hanggang sa pag-uwi nating dalawa... Hinahanap-hanap ko pa rin araw-araw yung magkasama tayo at yung pagyakap ko sayo (actually nahiya ako nun ih, sa susunod hihigpitan ko na, kala mo ah 😝).
       </p>
 
       <p>
@@ -92,7 +92,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Gaya ng inamin ko nung first date natin habang hawak ko ang kamay mo at suot mo 'yung bracelet... oo, nag-try ako sa iba nung panahong wala tayong communication. Pero tinigil ko din agad.
+        &nbsp; &nbsp; &nbsp; &nbsp; Gaya ng inamin ko nung first date natin habang hawak ko ang kamay mo at suot mo 'yung bracelet (tandang-tanda ko pa yung kaba at saya ko nung sinuot mo yung para sakin..) oo, nag-try ako sa iba nung panahong wala tayong communication. Pero tinigil ko din agad.
 
         Kasi napatunayan ko... ibang-iba ka sa kanila. Kahit anong gawin nila, hinding-hindi ka nila kayang higitan at wala nang makakapantay sa'yo.
       </p>

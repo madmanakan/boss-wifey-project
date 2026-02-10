@@ -6,15 +6,17 @@ import discordImg from './assets/discord.jpg';
 import undertaleBGM from './assets/undertale.mp3';
 import undyneSFX from './assets/undyne.mp3'; 
 import marioSFX from './assets/mario.mp3'; 
+import khazyVid from './assets/khazy.mp4'; 
 
-function Page12({ onBack, onReveal }) { 
+// 🔥 Added onVideoPlay prop
+function Page12({ onBack, onReveal, onVideoPlay }) { 
   const [phase, setPhase] = useState('start');
   const [displayedText, setDisplayedText] = useState("");
   const [showAchievement, setShowAchievement] = useState(false);
-  
-  // 🔥 New State: Para i-lock ang click habang may notification
   const [isInteractionAllowed, setIsInteractionAllowed] = useState(false);
+  const [showVideo, setShowVideo] = useState(false); 
   
+  // 🔥 RESTORED ORIGINAL TEXT
   const fullText = `HHabang binubuo ko itong website para sa'yo, Boss...
 Naalala ko na may tinago akong letter sa discord archive ko.
 Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo sa Litmatch. Isang araw bago mag-Valentine's.
@@ -23,36 +25,31 @@ Lasing ako nun. Tahimik. Malungkot. Nag-iisa.
 Pero bigla akong napangiti...
 Dahil hindi ko inakala na tutuparin pala ni God ang hiling ko sa dilim na 'yun.
 
-Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko. 
+Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko sa kanya. 
 At eto ang patunay..`;
 
   const bgmRef = useRef(new Audio(undertaleBGM));
   const sfxRef = useRef(new Audio(undyneSFX));
   const marioRef = useRef(new Audio(marioSFX)); 
 
-  // 🏆 ACHIEVEMENT UNLOCKED LOGIC + CLICK BLOCKER
   useEffect(() => {
     const timer = setTimeout(() => {
-      // 1. Play Mario Sound
       const mario = marioRef.current;
       mario.volume = 0.5;
       mario.play().catch(() => {});
 
-      // 2. Show Notification
       setShowAchievement(true);
 
-      // 3. Hide Notification after 4 seconds AND ALLOW CLICKING
       setTimeout(() => {
         setShowAchievement(false);
-        setIsInteractionAllowed(true); // 🔥 Ngayon lang pwede pumindot
+        setIsInteractionAllowed(true); 
       }, 4000);
 
-    }, 1000); // 1 Second Delay bago lumabas notification
+    }, 1000); 
 
     return () => clearTimeout(timer);
   }, []);
 
-  // 🎵 Play Undertale BGM
   useEffect(() => {
     const bgm = bgmRef.current;
     bgm.volume = 0.5;
@@ -69,7 +66,6 @@ At eto ang patunay..`;
     };
   }, []);
 
-  // ⌨️ Typewriter Logic
   useEffect(() => {
     if (phase !== 'typing') return;
 
@@ -100,9 +96,14 @@ At eto ang patunay..`;
     return () => clearInterval(intervalId);
   }, [phase, fullText]);
 
-  // 🔥 MAIN CLICK HANDLER
+  // 🔥 VIDEO STATE HANDLER (Para mag-pause ang BGM sa App.jsx)
+  useEffect(() => {
+    if (onVideoPlay) {
+      onVideoPlay(showVideo); // True = Pause Music, False = Resume Music
+    }
+  }, [showVideo, onVideoPlay]);
+
   const handleScreenClick = () => {
-    // 🛑 HARANG: Kung hindi pa tapos ang achievement notif, bawal pumindot
     if (!isInteractionAllowed) return;
 
     if (phase === 'start') {
@@ -132,7 +133,6 @@ At eto ang patunay..`;
       onClick={handleScreenClick}
     >
       
-      {/* 🏆 ACHIEVEMENT NOTIFICATION POPUP */}
       <AnimatePresence>
         {showAchievement && (
           <motion.div
@@ -155,7 +155,6 @@ At eto ang patunay..`;
         )}
       </AnimatePresence>
 
-      {/* 🖼️ BACKGROUND REVEAL */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: phase === 'revealed' ? 1 : 0 }}
@@ -180,7 +179,6 @@ At eto ang patunay..`;
 
       <div className="z-10 w-full max-w-2xl p-6 relative flex flex-col items-center justify-center text-center">
         
-        {/* 🔥 PROMPT: Show ONLY when interaction is allowed */}
         {phase === 'start' && isInteractionAllowed && (
           <motion.div 
             initial={{ opacity: 0 }} 
@@ -222,7 +220,7 @@ At eto ang patunay..`;
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="flex flex-col items-center w-full"
+            className="flex flex-col items-center w-full pb-20"
           >
             <h1 className="text-white text-2xl md:text-5xl font-black mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] italic text-center uppercase">
               "THE PROPHECY (FEB 13, 2023)"✨
@@ -251,7 +249,7 @@ At eto ang patunay..`;
                 "Boss, ikaw pala 'yung tinutukoy ko dito. Ikaw pala yung Waifu IRL na hinihintay ko."
               </p>
               <p className="mb-8">
-                "Tinupad ko na yung promise ko haa? Binabasa mo na siya ngayon. PROMISE FULFILLED. ✅ (Angas mag-english eh no, pag lasing tsaka lumalabas yung english spokening na mali mali pa ang grammarist nyan sha HAHAHAH!)"
+                "Tinupad ko na yung promise ko haa? Binabasa mo na siya ngayon. PROMISE FULFILLED. ✅ (Im not weirdo daw, pero palo mag english spokening na mali mali pa ang grammarist nyan sha sabay may i love my waifuuu irl pa yan sha HAHAHAH!)"
               </p>
 
               <div className="border-t-2 border-white/20 pt-6">
@@ -267,9 +265,29 @@ At eto ang patunay..`;
                 </p>
                 
                 <p className="font-black text-white text-lg md:text-xl drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-                  Kaya lasing man o hindi, hinding-hindi ko magagawang saktan ka at samantalahin. Safe na safe ka sa akin, habambuhay. 🛡️❤️
+                  Kaya lasing man o hindi, hinding-hindi kita sasamantalahin. Safe na safe ka sa akin, habambuhay. 🛡️❤️
                 </p>
               </div>
+            </motion.div>
+
+            {/* 🔥 BUTTON SA PINAKA BABA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 3 }}
+              className="mt-12 w-full flex justify-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  setShowVideo(true);
+                }}
+                className="bg-gradient-to-r from-pink-500 to-rose-600 border-4 border-white text-white px-4 md:px-8 py-3 md:py-4 rounded-full font-black text-xs md:text-sm shadow-[0_0_20px_rgba(255,20,147,0.6)] animate-bounce uppercase tracking-widest flex items-center gap-2"
+              >
+                <span>👶</span> MAY ISA PANG HUMAHABOL... CLICK MO BOSS! <span>🎥</span>
+              </motion.button>
             </motion.div>
              
              <motion.p 
@@ -284,6 +302,61 @@ At eto ang patunay..`;
           </motion.div>
         )}
       </div>
+
+      {/* 🎥 VIDEO MODAL POPUP (WITH BUNSO TEXT) */}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/95"
+            onClick={(e) => { e.stopPropagation(); setShowVideo(false); }}
+          >
+            <motion.div
+              initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.5 }}
+              className="bg-[#fbf0d5] p-2 border-4 border-[#7289da] rounded-lg shadow-[0_0_30px_rgba(114,137,218,0.5)] max-w-lg w-full relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setShowVideo(false)} 
+                className="absolute -top-4 -right-4 bg-red-600 text-white rounded-full w-8 h-8 font-black border-2 border-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-10"
+              >
+                X
+              </button>
+
+              <div className="text-center text-[#7289da] font-black mb-2 uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+                 🎥 SPECIAL FEATURE: KHAZY
+              </div>
+
+              {/* VIDEO PLAYER */}
+              <div className="relative w-full aspect-video bg-black rounded border-2 border-black/50 overflow-hidden">
+                <video
+                  src={khazyVid}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              
+              {/* 🔥 BUNSO TEXT HERE (ADDED) */}
+              <div className="mt-4 text-center px-2 pb-2">
+                <p className="text-[#3a2a1a] text-sm md:text-base font-bold italic leading-relaxed">
+                  "Ohh diba, pati si bunso miss ka na! Sabi niya 'no panget' daw, 'danda pala talaga!' Bulol bulol pa yan partida pero galing sa puso yung 'Ate Rona' niya. Welcome ka sa amin, Boss!"
+                </p>
+                <p className="text-[#7289da] text-[10px] mt-2 font-black uppercase">
+                  (Sound On, Boss! 🔊)
+                </p>
+              </div>
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
