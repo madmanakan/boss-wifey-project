@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // 🔥 Added useEffect here
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- ASSETS IMPORT ---
@@ -23,8 +23,20 @@ function Page9({ onNext, onBack }) {
   }, []);
 
   const content = [
-    { id: 1, gif: dog1, doubt: "You're going to get tired of my attitude eventually.", assurance: "Sinabi ko na sa sarili ko na ako ang anchor mo kaya gusto ko marinig mo to. Kahit gaano pa kalakas ang alon (o ang toyo mo), hindi ako bibitaw. Mahal ko ang pagka-Maldita mo gaya ng pagmamahal ko sa sweet side mo. Never ako na aalis." },
-    { id: 2, gif: dog2, doubt: "I'm better off alone. Men always leave anyway.", assurance: "Alam kong kaya mong mag-isa, strong independent woman ka eh. Pero hindi mo na kailangang kayanin mag-isa. Iba ako sa kanila—Asawa mo ko. Ginawa ko itong website para patunayan na nandito lang ako sa tabi mo kahit topakin ka pa araw-araw." },
+    { 
+      id: 1, 
+      gif: dog1, 
+      doubt: "You're going to get tired of my attitude eventually.", 
+      // 🔥 FIX: Naka-paragraph tags (<p>) na 'to pre para goods ang spacing
+      assurance: (
+        <>
+          <p className="mb-4">Naalala mo yung ni-repost mo sa TikTok bago ang First Date natin? 'Yung tanong na 'Do you swear?'</p>
+          <p className="mb-4">Sinagot ko yan nang direktahan habang suot mo ang couple bracelet natin: 'I swear, even sa pinakaworst version mo, nandito lang ako. Hindi kita iiwan.'</p>
+          <p>Gusto kong sabihin sayo at malaman mo na, ako ang ANCHOR mo. Kahit gaano pa kalakas ang alon (o ang toyo mo), hinding-hindi ako bibitaw. Mahal ko ang pagka-Maldita mo gaya ng pagmamahal ko sa sweet side mo. Never akong aalis.</p>
+        </>
+      )
+    },
+    { id: 2, gif: dog2, doubt: "I'm better off alone. Men always leave anyway.", assurance: "Alam kong kaya mong mag-isa, strong independent woman ka. Pero hindi mo na kailangang kayanin mag-isa. Iba ako sa kanila—Asawa mo ko. Ginawa ko itong website para patunayan na nandito lang ako sa tabi mo kahit topakin ka pa araw-araw." },
     { id: 3, gif: dog3, doubt: "I'm too much to handle. I'm broken.", assurance: "Hindi ka broken, Boss. Ikaw ang pahinga ko. Kung feeling mo 'too much' ka, edi papalakasin ko sarili ko para kayanin kita. baka Limuel Kyle na ito boss. Basic bleeehh!" },
     { id: 4, gif: dog4, doubt: "What if this is all just temporary?", assurance: "Tignan mo 'yang nasa pulso mo ngayon. Yan ang 'Soulbound Item' nating dalawa. Sa laro, pag soulbound, hindi na pwedeng burahin. Hindi ako nag-g-grind ng ganito para sa 'temporary' lang. Endgame na 'to." },
     { id: 5, gif: dog5, doubt: "Why are you doing all this for me?", assurance: "Kasi deserve mong makasigurado. Ayoko ng hulaan, ayoko ng mixed signals. Gusto ko, malinaw sayo na mahal kita. Ganun lang kasimple." },
@@ -146,9 +158,10 @@ function Page9({ onNext, onBack }) {
                   className="bg-[#fbf0d5] border-8 border-[#72432d] p-6 shadow-2xl w-full flex flex-col items-center rounded-sm"
                 >
                   <img src={content.find(c => c.id === selectedId).gif} className="w-40 h-40 md:w-56 md:h-56 mb-4 border-4 border-[#3a2a1a] object-cover rounded-full" alt="Doggo" />
-                  <p className="text-[#3a2a1a] text-lg md:text-xl font-black italic text-center leading-tight">
-                    "{content.find(c => c.id === selectedId).assurance}"
-                  </p>
+                  {/* 🔥 Changed from <p> to <div> to allow inner <p> tags */}
+                  <div className="text-[#3a2a1a] text-lg md:text-xl font-black italic text-center leading-tight">
+                    {content.find(c => c.id === selectedId).assurance}
+                  </div>
                 </motion.div>
               ) : (
                 /* 🔥 INSTRUCTION CARD ANIMATION */

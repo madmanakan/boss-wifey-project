@@ -33,7 +33,7 @@ function Page8({ onNext, onBack }) {
     },
     { 
       img: pic5, 
-      text: "THE LEGENDARY RESIBO (Feb 19, 2025):\nEto yung mga panahong sobrang daldal ng boss ko talaga, may pa-VM pa yan! Inaabot pa ng 1AM talaga na nagkkwentuhan MWAHAHAHA! Nanggigil ako sa'yo dito grabe dating chubet daw oh 🤨, ngayon asawa na HAHAHAHA bleh. Kala mo ah, naka-tago 'to sa baul ko. Sa susunod ilalabas ko na yung iba ko pang SS sa convo natin MWAHAHAHA! 😝 Sige po tulog na tayo, asawa ko. 😊😊"
+      text: "THE LEGENDARY RESIBO (Feb 19, 2025):\nEto yung mga panahong sobrang daldal ng boss ko talaga, may pa-VM pa yan! Inaabot pa ng 1AM talaga na nagkkwentuhan MWAHAHAHA! Nanggigigil ako sayo dito (araw-araw naman talaga, kala mo ah!) grabe chubet daw oh 🤨, ngayon asawa na HAHAHAHA bleh. Kala mo ah, naka-tago 'to sa baul ko. Sa susunod ilalabas ko na yung iba ko pang SS sa convo natin MWAHAHAHA! 😝 Sige po tulog na tayo, asawa ko. 😊😊"
     },
   ];
 

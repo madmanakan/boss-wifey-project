@@ -35,7 +35,7 @@ function Page10({ onNext, onBack }) {
       <p>
         &nbsp; &nbsp; &nbsp; &nbsp; HAHAHAHA! Sige, deal 'yan. Tabi kami ni Tito matulog habang kinukwento ko sa kanya kung gaano ko ka-mahal... at kung gaano ko gustong pakasalan ang nag-iisa at sobrang ganda niyang anak. (Kala mo ah! 😝)
 
-        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa Quezon City at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin, hindi lang sa Tanza kundi sa buong Cavite (HAHAHAHA 😝). Manifesting 'yan! ✨
+        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa Quezon City at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin, hindi lang sa Tanza kundi dito sa buong Cavite (HAHAHAHA 😝). Manifesting 'yan! ✨
       </p>
 
       <p>
