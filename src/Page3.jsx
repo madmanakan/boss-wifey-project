@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+
+// --- ASSETS ---
 import sdvBG from './assets/sdv23.jpg'; 
-import pleadingCat from './assets/catcat.gif'; 
+import pleadingCat from './assets/catcat.gif'; // Default
+import cry1 from './assets/cry1.gif';
+import cry2 from './assets/cry2.gif';
+import cry3 from './assets/cry3.gif';
+import cry4 from './assets/cry4.gif';
+import cry5 from './assets/cry5.gif';
+import cry6 from './assets/cry6.gif';
+import cry7 from './assets/cry7.gif';
 
 function Page3({ onNext, onBack }) { 
   const [yesSize, setYesSize] = useState(1);
   const [noClicks, setNoClicks] = useState(0);
+
+  // Array ng mga iyak GIFs
+  const gifs = [pleadingCat, cry1, cry2, cry3, cry4, cry5, cry6, cry7];
 
   const beggingTexts = [
     "No? 🥺",
@@ -23,14 +35,18 @@ function Page3({ onNext, onBack }) {
   ];
 
   const handleNoInteraction = () => {
-    // 🔥 Dahan-dahan lang ang dagdag (0.15) para hindi halata sa simula
-    setYesSize(prev => prev + 0.15); 
+    // 🔥 ADJUSTED GROWTH: Times 1.3 lang para hindi agad-agad sakop ang screen
+    setYesSize(prev => prev * 1.3); 
     
-    // Para humaba yung "begging" phase natin
-    if (noClicks < beggingTexts.length - 1) {
-      setNoClicks(prev => prev + 1);
-    }
+    // Dagdag count para mag-iba text at GIF
+    setNoClicks(prev => prev + 1);
   };
+
+  // 🔥 Logic para sa GIF
+  const currentGif = gifs[noClicks % gifs.length];
+
+  // 🔥 Logic para sa NO Button scaling: Bumabawas ng 0.10 para mas matagal mawala (dati 0.15)
+  const noScale = Math.max(0, 1 - (noClicks * 0.10));
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
@@ -54,42 +70,52 @@ function Page3({ onNext, onBack }) {
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="z-10 bg-[#e7b682] border-8 border-[#72432d] p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)] max-w-sm w-full text-center flex flex-col items-center relative"
+        className="z-10 bg-[#e7b682] border-8 border-[#72432d] p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)] max-w-lg w-full text-center flex flex-col items-center relative"
       >
-        <img 
-          src={pleadingCat} 
-          alt="Pleading Cat" 
-          className="w-48 h-48 mb-4 drop-shadow-md object-contain" 
+        {/* 🐱 DYNAMIC GIF */}
+        <motion.img 
+          key={currentGif} 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          src={currentGif} 
+          alt="Crying Cat" 
+          className="w-48 h-48 mb-6 drop-shadow-md object-contain" 
         />
 
-        <h2 className="text-[#3a2a1a] text-2xl font-black mb-10 leading-tight">
+        <h2 className="text-[#3a2a1a] text-2xl font-black mb-12 leading-tight">
           "Boss Rona, will you be my Valentine?"
         </h2>
 
-        <div className="flex flex-col gap-10 items-center justify-center w-full">
-          {/* ✅ THE SNEAKY YES BUTTON */}
+        {/* BUTTON CONTAINER: Side-by-side layout na may malaking GAP */}
+        <div className="flex items-center justify-center gap-10 w-full relative min-h-[100px]">
+          
+          {/* ✅ THE YES BUTTON */}
+          {/* Lower Z-Index (10) para nasa ilalim siya pag nag-overlap */}
           <motion.button
             animate={{ scale: yesSize }}
-            // Dahan-dahan ang transition para hindi "snap" ang laki
-            transition={{ type: "spring", stiffness: 100, damping: 25 }}
+            transition={{ type: "spring", stiffness: 200, damping: 10 }}
             onClick={onNext}
-            className="bg-[#489512] border-4 border-[#244a09] text-white px-10 py-3 font-bold shadow-lg active:scale-95 z-[60] whitespace-nowrap origin-center"
+            className="bg-[#489512] border-4 border-[#244a09] text-white px-8 py-3 font-bold shadow-lg active:scale-95 z-10 whitespace-nowrap"
           >
             YES! 💙
           </motion.button>
 
-          {/* ❌ THE FIXED NO BUTTON */}
-          <button
-            onClick={handleNoInteraction}      
-            className="bg-[#ad261d] border-4 border-[#5c120d] text-white px-6 py-2 font-bold opacity-80 z-10 transition-colors duration-300"
-          >
-            {beggingTexts[noClicks]}
-          </button>
+          {/* ❌ THE NO BUTTON */}
+          {/* Higher Z-Index (50) para laging nakapatong/kita hanggang mawala */}
+          {noScale > 0 && (
+            <motion.button
+              animate={{ scale: noScale, rotate: noClicks * 5 }} // Konting rotate effect para dramatic
+              onClick={handleNoInteraction}      
+              className="bg-[#ad261d] border-4 border-[#5c120d] text-white px-6 py-2 font-bold opacity-90 z-50 transition-colors duration-300 hover:bg-red-700"
+            >
+              {beggingTexts[Math.min(noClicks, beggingTexts.length - 1)]}
+            </motion.button>
+          )}
         </div>
       </motion.div>
       
       <p className="z-10 mt-10 text-white/70 text-sm italic font-medium drop-shadow-md text-center max-w-xs">
-         "Wala na talagang 'No' sa dictionary ko pagdating sayo, Boss."
+          "Wala na talagang 'No' sa dictionary ko pagdating sayo, Boss."
       </p>
     </div>
   );

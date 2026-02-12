@@ -20,7 +20,6 @@ function Page8({ onNext, onBack }) {
     },
     { 
       img: pic2, 
-      // 🔥 FIXED: Nilagyan ko ng \n\n para bumaba yung text at maging paragraph
       text: "OOOOHHH, lakas talaga oh! Lalo na yung nasa Top 3, grabe ang ganda ng name ng baril... default daw dapat yun sabi mo non? (Nyenyenye, kala mo ah! 😝)\n\nWala, miss ko na ang SR God at ang nag-iisang Registered Nurse (RNLARE) ng buhay kooo 😝." 
     },
     { 
@@ -42,6 +41,37 @@ function Page8({ onNext, onBack }) {
     setOpenedCount((prev) => new Set(prev).add(index));
   };
 
+  // 🔥 ANIMATION VARIANTS (ELASTIC POP EFFECT)
+  const gridContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Delay bawat card para sunod-sunod
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.3, // Magsisimula sa maliit
+      y: 100 // Magsisimula sa baba
+    },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { 
+        type: "spring", // Physics-based animation
+        stiffness: 150, // Gaano katigas yung spring
+        damping: 12,    // Gaano kabilis tumigil (lower = more bounce)
+        mass: 1.2       // Bigat ng item
+      } 
+    }
+  };
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center p-6 overflow-y-auto bg-[#0a0a2e]">
       
@@ -60,30 +90,53 @@ function Page8({ onNext, onBack }) {
       </motion.button>
 
       <div className="z-10 w-full max-w-2xl mt-16">
-        <h1 className="text-white text-4xl font-black text-center mb-12 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] italic">
+        <motion.h1 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "backOut" }}
+          className="text-white text-4xl font-black text-center mb-12 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] italic"
+        >
           2025 MEMORIES W/ YOU 💌
-        </h1>
+        </motion.h1>
 
-        {/* 📂 GRID */}
-        <div className="grid grid-cols-2 gap-6 mb-20">
+        {/* 📂 GRID WITH STAGGERED ANIMATION */}
+        <motion.div 
+          className="grid grid-cols-2 gap-6 mb-20"
+          variants={gridContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {memories.map((_, idx) => (
             <motion.div
               key={idx}
+              variants={cardVariants} // Apply bouncy effect per item
+              whileHover={{ 
+                scale: 1.05, 
+                rotate: idx % 2 === 0 ? 2 : -2, // Konting tilt pag hover
+                transition: { type: "spring", stiffness: 300 } 
+              }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleOpen(idx)}
               className={`cursor-pointer bg-[#e7b682] border-4 border-[#72432d] p-4 flex flex-col items-center shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] ${idx === 4 ? 'col-span-2 mx-auto w-1/2' : ''}`}
             >
-              <span className="text-4xl mb-2">{openedCount.has(idx) ? '📂' : '✉️'}</span>
+              <motion.span 
+                className="text-4xl mb-2"
+                animate={{ scale: openedCount.has(idx) ? [1, 1.2, 1] : 1 }} // Pulse effect pag nabuksan
+                transition={{ duration: 0.3 }}
+              >
+                {openedCount.has(idx) ? '📂' : '✉️'}
+              </motion.span>
               <span className="text-[#3a2a1a] font-black text-xs uppercase text-center">Moment #{idx + 1}</span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Final Message & Page 9 Button */}
         {openedCount.size === memories.length && (
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ scale: 0, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 10 }}
             className="flex flex-col items-center gap-6 mb-16"
           >
             <div className="bg-[#fbf0d5] border-8 border-[#489512] p-6 text-center shadow-2xl">
@@ -92,18 +145,20 @@ function Page8({ onNext, onBack }) {
               </p>
             </div>
 
-            <button 
+            <motion.button 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={onNext}
               className="bg-[#ad261d] border-4 border-[#5c120d] text-white px-10 py-3 font-black text-lg 
-                          shadow-[0_0_20px_rgba(255,0,0,0.5)] animate-bounce uppercase mt-4"
+                         shadow-[0_0_20px_rgba(255,0,0,0.5)] animate-bounce uppercase mt-4"
             >
               BLEEHHH... 👉
-            </button>
+            </motion.button>
           </motion.div>
         )}
       </div>
 
-      {/* 🖼️ MODAL FOR MEMORIES */}
+      {/* 🖼️ MODAL FOR MEMORIES (POP EFFECT) */}
       <AnimatePresence>
         {selectedIdx !== null && (
           <motion.div 
@@ -112,18 +167,18 @@ function Page8({ onNext, onBack }) {
             onClick={() => setSelectedIdx(null)}
           >
             <motion.div 
-              initial={{ scale: 0.8 }} animate={{ scale: 1 }}
-              // Added max-h-[85vh] and overflow-y-auto so you can scroll if text is long
+              initial={{ scale: 0.5, opacity: 0, y: 100 }} 
+              animate={{ scale: 1, opacity: 1, y: 0 }} 
+              exit={{ scale: 0.5, opacity: 0, y: 100 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }} // POP UP EFFECT
               className="bg-[#fbf0d5] border-8 border-[#72432d] p-4 max-w-sm w-full relative max-h-[85vh] overflow-y-auto no-scrollbar rounded-lg"
               onClick={(e) => e.stopPropagation()}
             >
               <button onClick={() => setSelectedIdx(null)} className="absolute top-2 right-2 z-50 bg-red-600 text-white w-8 h-8 rounded-full font-black border-2 border-white flex items-center justify-center shadow-md">X</button>
               
-              {/* CONDITIONAL STYLING FOR MOMENT 5 (Index 4) vs OTHERS */}
               <div className={`mb-4 ${selectedIdx === 4 ? 'w-full' : 'border-4 border-[#3a2a1a] overflow-hidden bg-white'}`}>
                 <img 
                     src={memories[selectedIdx].img} 
-                    // If Moment 5, plain width & height. If others, maintain object-contain + max-height
                     className={selectedIdx === 4 
                       ? "w-full h-auto rounded-md" 
                       : "w-full h-auto max-h-[400px] object-contain mx-auto shadow-inner"

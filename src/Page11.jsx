@@ -23,6 +23,8 @@ function Page11({ onNext, onBack }) {
   
   // State para sa swipe arrow
   const [showArrow, setShowArrow] = useState(false);
+  // 🔥 NEW STATE: Para sa Secret Hint Notification
+  const [showHintNotification, setShowHintNotification] = useState(false);
 
   const detectSize = () => {
     setWindowDimension({ width: window.innerWidth, height: window.innerHeight });
@@ -60,10 +62,15 @@ function Page11({ onNext, onBack }) {
     if (paymentMethod) {
       setShowSuccess(true);
       setSelectedFlower(null);
-      // 🔥 Logic: Close success modal after 5s, then show SINGLE arrow
+      
+      // 🔥 Logic: Close success modal after 5s, then show ARROW + HINT NOTIFICATION
       setTimeout(() => {
         setShowSuccess(false);
         setShowArrow(true); 
+        setShowHintNotification(true); // Litaw ang hint
+
+        // Optional: Hide hint after 8 seconds para di harang, pero stay ang arrow
+        setTimeout(() => setShowHintNotification(false), 8000);
       }, 5000);
     }
   };
@@ -77,6 +84,28 @@ function Page11({ onNext, onBack }) {
         <img src={blueBG} className="w-full h-full object-cover" alt="Blue BG" />
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
+
+      {/* 🔥 SECRET HINT NOTIFICATION (Lalabas sa Taas) */}
+      <AnimatePresence>
+        {showHintNotification && (
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 100 }}
+            className="fixed top-20 z-[250] w-full px-4 flex justify-center pointer-events-none"
+          >
+            <div className="bg-[#fbf0d5] border-4 border-[#ad261d] p-4 rounded-xl shadow-2xl max-w-md text-center pointer-events-auto relative">
+              <span className="absolute -top-3 -left-3 text-3xl animate-bounce">🤫</span>
+              <p className="text-[#3a2a1a] text-sm md:text-base font-bold leading-relaxed">
+                Thank you for purchasing, Boss! <br/>
+                <span className="text-[#ad261d] italic font-black">Btw, may tinatagong sikreto ang page na to...</span> <br/>
+                Hanapin mo ang arrow sa gilid sabay swipe mo papuntang left pag nakita mo naaa. 👀
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <motion.button 
         whileTap={{ scale: 0.9 }}
@@ -116,7 +145,7 @@ function Page11({ onNext, onBack }) {
                   animate={{ x: [0, -3, 0] }} // 🔥 Galaw: 3px lang (Sobrang pino)
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
-                  {/* 🔥 Size: text-3xl (Maliit), Opacity: text-white/20 (Madilim/Malabo) */}
+                  {/* 🔥 Size: text-3xl (Maliit), Opacity: text-white/30 (Madilim/Malabo) */}
                   <span className="text-3xl font-black text-white/30 drop-shadow-sm hover:text-white/80 transition-colors">
                     ‹
                   </span>
@@ -138,7 +167,7 @@ function Page11({ onNext, onBack }) {
               BOSS RONA'S DIGITAL FLOWER SHOP 🥀💻
             </h1>
             <p className="text-[#3a2a1a] text-lg font-bold italic leading-relaxed mb-8">
-              "Sana malapit lang ako sayo boss para maabot sayo ang bulaklak this Valentines Day, dito ko muna idadaan ang pagbigay sayo ng iba't ibang variant ng flowers. 🥺"
+              "Ang totoong bulaklak nalalanta, pero itong ginawa ko... FOREVER. Kaya dito ko muna idadaan ang flowers para sayo, Boss. Gawa sa aking code, hindi namamatay, parang pagtingin ko sayo. (Tipid pa sa dilig! 😝)"
             </p>
             <motion.button
               whileTap={{ scale: 0.95 }}

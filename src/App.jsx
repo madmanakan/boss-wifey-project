@@ -23,6 +23,7 @@ import song5 from './assets/tadhana.mp3'
 import song6 from './assets/cruelsum.mp3'
 import song7 from './assets/invistring.mp3'
 import song8 from './assets/newyear.mp3'
+import song9 from './assets/pasilyo.mp3' // 🔥 ADDED PASILYO
 
 function App() {
   const [stage, setStage] = useState(1);
@@ -43,7 +44,10 @@ function App() {
     ].sort(() => Math.random() - 0.5);
 
     const cruelSummer = { src: song6, title: "Cruel Summer - Taylor Swift" };
+    
+    // 🔥 OPM SECTION
     const tadhana = { src: song5, title: "Tadhana - Up Dharma Down" };
+    const pasilyo = { src: song9, title: "Pasilyo - SunKissed Lola" }; // 🔥 Pasilyo Object
 
     const tier3 = [
       { src: song4, title: "Enchanted - Taylor Swift" },
@@ -52,7 +56,8 @@ function App() {
 
     const finale = { src: song8, title: "New Year's Day - Taylor Swift" };
 
-    return [...tier1, cruelSummer, tadhana, ...tier3, finale];
+    // 🔥 Added pasilyo right after tadhana
+    return [...tier1, cruelSummer, tadhana, pasilyo, ...tier3, finale];
   });
 
   const audioRef = useRef(null);
@@ -126,7 +131,7 @@ function App() {
         setShowNowPlaying(true);
       }
     }
-  }, [stage, isSecretIntroDone, isSecretVideoPlaying]); // Added isSecretVideoPlaying dep
+  }, [stage, isSecretIntroDone, isSecretVideoPlaying]); 
 
   useEffect(() => {
     if (showNowPlaying) {

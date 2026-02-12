@@ -7,8 +7,11 @@ import jayb from './assets/jayb.jpg';
 import harrys from './assets/harrys.jpg';
 import mingyu from './assets/mingyu.jpg';
 
-function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
+function Page6({ onNext, onBack }) { 
   const [modalContent, setModalContent] = useState(null);
+  
+  // 🔥 STATE PARA SA TRACKING NG OPENED MESSAGES
+  const [openedIds, setOpenedIds] = useState(new Set());
 
   const messages = [
     { 
@@ -34,6 +37,31 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
     }
   ];
 
+  const handleOpen = (msg) => {
+    setModalContent(msg);
+    // Add ID to set to track progress
+    setOpenedIds(prev => new Set(prev).add(msg.id));
+  };
+
+  // Check if all messages are opened
+  const allOpened = openedIds.size === messages.length;
+
+  // 🔥 ANIMATION VARIANTS
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3 // Delay bawat button
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 120 } }
+  };
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-6 overflow-hidden">
       
@@ -43,7 +71,7 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
-      {/* 🔙 STICKY BACK BUTTON (Stardew Style) */}
+      {/* 🔙 STICKY BACK BUTTON */}
       <motion.button 
         whileTap={{ scale: 0.9 }}
         onClick={onBack}
@@ -52,29 +80,39 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
         ⬅ BACK
       </motion.button>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="z-10 w-full max-w-md text-center"
-      >
-        <h2 className="text-white text-3xl font-black mb-10 drop-shadow-lg tracking-tighter">
+      <div className="z-10 w-full max-w-md text-center">
+        <motion.h2 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, type: "spring" }}
+          className="text-white text-3xl font-black mb-10 drop-shadow-lg tracking-tighter"
+        >
           EMOTIONS BOARD <br/> PARA SA AKING BOSS!📜
-        </h2>
+        </motion.h2>
 
-        {/* 🚀 "OPEN WHEN" Buttons */}
-        <div className="grid grid-cols-1 gap-6">
+        {/* 🚀 "OPEN WHEN" Buttons with Staggered Animation */}
+        <motion.div 
+          className="grid grid-cols-1 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {messages.map((msg) => (
             <motion.button
               key={msg.id}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setModalContent(msg)}
-              className="w-full bg-[#ad261d] border-4 border-[#5c120d] text-white px-6 py-4 font-black text-lg 
-                         shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:bg-[#c42d23] transition-all uppercase"
+              onClick={() => handleOpen(msg)}
+              className={`w-full border-4 border-[#5c120d] text-white px-6 py-4 font-black text-lg 
+                          shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] transition-all uppercase relative overflow-hidden
+                          ${openedIds.has(msg.id) ? 'bg-gray-600 opacity-80' : 'bg-[#ad261d] hover:bg-[#c42d23]'}`}
             >
               {msg.label}
+              {openedIds.has(msg.id) && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xl">✅</span>}
             </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* 💌 MODAL POP-UP */}
         <AnimatePresence>
@@ -87,8 +125,10 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
               onClick={() => setModalContent(null)}
             >
               <motion.div 
-                initial={{ scale: 0.8, y: 20 }}
-                animate={{ scale: 1, y: 0 }}
+                initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
+                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                exit={{ scale: 0.5, opacity: 0, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 className="bg-[#fbf0d5] border-8 border-[#72432d] p-6 max-w-sm w-full shadow-2xl relative"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -106,7 +146,7 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
 
                 <button 
                   onClick={() => setModalContent(null)}
-                  className="w-full bg-[#ad261d] text-white py-2 font-bold border-4 border-[#5c120d] active:scale-95"
+                  className="w-full bg-[#ad261d] text-white py-2 font-bold border-4 border-[#5c120d] active:scale-95 hover:bg-[#c42d23] transition-colors"
                 >
                   CLOSE MESSAGE ✕
                 </button>
@@ -115,15 +155,24 @@ function Page6({ onNext, onBack }) { // Dagdag natin ang onBack prop dito pre
           )}
         </AnimatePresence>
 
-        {/* ✅ Next Button to Page 7 */}
-        <motion.button 
-          onClick={onNext}
-          className="mt-12 bg-[#489512] border-4 border-[#244a09] text-white px-10 py-3 font-black 
-                     shadow-lg hover:scale-105 active:scale-95 transition-all animate-bounce"
-        >
-          MARAMI PA AKONG SASABIHIN... 👉
-        </motion.button>
-      </motion.div>
+        {/* ✅ Next Button - APPEARS ONLY WHEN ALL OPENED */}
+        <AnimatePresence>
+          {allOpened && (
+            <motion.button 
+              initial={{ scale: 0, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              onClick={onNext}
+              className="mt-12 bg-[#489512] border-4 border-[#244a09] text-white px-10 py-3 font-black 
+                         shadow-lg hover:scale-110 active:scale-95 transition-all animate-bounce uppercase tracking-widest"
+            >
+              MARAMI PA AKONG SASABIHIN... 👉
+            </motion.button>
+          )}
+        </AnimatePresence>
+
+      </div>
     </div>
   );
 }
