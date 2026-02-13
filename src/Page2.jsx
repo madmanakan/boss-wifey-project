@@ -12,8 +12,10 @@ function Page2({ onSuccess, onBack }) {
     e.preventDefault();
     setAttempts(prev => prev + 1);
 
-    // Passcode based on shared special date
-    if (passcode === "0920") {
+    // 🔥 LOGIC UPDATE:
+    // 1. Check kung "0920" (Main Passcode)
+    // 2. OR Check kung "rnlare" (Secret/Easter Egg) - case insensitive
+    if (passcode === "0920" || passcode.toLowerCase() === "rnlare") {
       onSuccess();
     } else {
       setError("ENGGKKK, MALI KA BOSS. May lalabas na icon/hint sa gilid after ng 2 tries! 😝");
@@ -38,16 +40,15 @@ function Page2({ onSuccess, onBack }) {
         ⬅️ BACK
       </button>
 
-      {/* 🎧 FIXED ADVISORY: CENTERED, MADILIM, & SAKTO LANG ANG LAKI */}
+      {/* 🎧 ADVISORY */}
       <motion.div 
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100 }}
-        // 🔥 bg-black/90 para madilim, text-center & items-center para gitna lahat
         className="z-20 mb-6 bg-black/90 backdrop-blur-md border-2 border-yellow-500/50 px-6 py-3 rounded-lg flex items-center justify-center gap-4 shadow-xl max-w-md w-fit mx-auto"
       >
         <span className="text-2xl animate-pulse">🎧</span>
-        <div className="flex flex-col items-center text-center"> {/* 🔥 CENTERED NA DITO PRE */}
+        <div className="flex flex-col items-center text-center">
           <span className="text-yellow-500 text-[10px] md:text-xs font-black uppercase tracking-widest mb-0.1">
           ⚠️ ADVISORY:
           </span>
@@ -65,6 +66,7 @@ function Page2({ onSuccess, onBack }) {
       >
         <h2 className="text-[#3a2a1a] text-2xl font-black text-center mb-2 uppercase tracking-tighter">Security Check</h2>
         
+        {/* Instruction stays focus on digits to keep the secret hidden */}
         <p className="text-[#3a2a1a] text-center text-sm font-bold mb-6 tracking-wide">
           Enter the special date (4 DIGITS)
         </p>
