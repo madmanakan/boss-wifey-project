@@ -23,7 +23,7 @@ import song5 from './assets/tadhana.mp3'
 import song6 from './assets/cruelsum.mp3'
 import song7 from './assets/invistring.mp3'
 import song8 from './assets/newyear.mp3'
-import song9 from './assets/pasilyo.mp3' // 🔥 ADDED PASILYO
+import song9 from './assets/pasilyo.mp3' 
 
 function App() {
   const [stage, setStage] = useState(1);
@@ -37,6 +37,7 @@ function App() {
   const [isSecretVideoPlaying, setIsSecretVideoPlaying] = useState(false);
   
   const [playlist] = useState(() => {
+    // 1. Random Start
     const tier1 = [
       { src: song1, title: "Begin Again - Taylor Swift" },
       { src: song2, title: "Daylight - Taylor Swift" },
@@ -45,19 +46,20 @@ function App() {
 
     const cruelSummer = { src: song6, title: "Cruel Summer - Taylor Swift" };
     
-    // 🔥 OPM SECTION
+    // 2. Specific Sequence: Tadhana -> Enchanted -> Pasilyo
     const tadhana = { src: song5, title: "Tadhana - Up Dharma Down" };
-    const pasilyo = { src: song9, title: "Pasilyo - SunKissed Lola" }; // 🔥 Pasilyo Object
+    const enchanted = { src: song4, title: "Enchanted - Taylor Swift" }; // 🔥 Moved here
+    const pasilyo = { src: song9, title: "Pasilyo - SunKissed Lola" };
 
+    // 3. Remaining Random
     const tier3 = [
-      { src: song4, title: "Enchanted - Taylor Swift" },
       { src: song7, title: "Invisible String - Taylor Swift" }
-    ].sort(() => Math.random() - 0.5);
+    ];
 
     const finale = { src: song8, title: "New Year's Day - Taylor Swift" };
 
-    // 🔥 Added pasilyo right after tadhana
-    return [...tier1, cruelSummer, tadhana, pasilyo, ...tier3, finale];
+    // 🔥 Updated Order: Tadhana -> Enchanted -> Pasilyo
+    return [...tier1, cruelSummer, tadhana, enchanted, pasilyo, ...tier3, finale];
   });
 
   const audioRef = useRef(null);

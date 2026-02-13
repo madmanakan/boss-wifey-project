@@ -167,7 +167,7 @@ function Page11({ onNext, onBack }) {
               BOSS RONA'S DIGITAL FLOWER SHOP 🥀💻
             </h1>
             <p className="text-[#3a2a1a] text-lg font-bold italic leading-relaxed mb-8">
-              "Ang totoong bulaklak nalalanta, pero itong ginawa ko... FOREVER. Kaya dito ko muna idadaan ang flowers para sayo, Boss. Gawa sa aking code, hindi namamatay, parang pagtingin ko sayo. (Tipid pa sa dilig! 😝)"
+              "Ang bulaklak minsan nalalanta, pero itong ginawa ko... FOREVER. Kaya dito ko muna idadaan ang flowers para sayo, Boss. Gawa sa aking code, hindi namamatay, parang pagtingin ko sayo. (Tipid pa sa dilig! 😝)"
             </p>
             <motion.button
               whileTap={{ scale: 0.95 }}

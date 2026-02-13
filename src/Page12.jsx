@@ -345,7 +345,7 @@ At eto ang patunay..`;
               {/* 🔥 BUNSO TEXT HERE (ADDED) */}
               <div className="mt-4 text-center px-2 pb-2">
                 <p className="text-[#3a2a1a] text-sm md:text-base font-bold italic leading-relaxed">
-                  "Ohh diba, pati si bunso miss ka na! Sabi niya 'no panget' daw, 'danda pala talaga!' Bulol bulol pa partida pero galing sa puso yung 'Ate Rona' niya. Welcome ka sa amin, Boss!" <br/> 😊😊
+                  "Ohh diba, pati si bunso miss ka na! Sabi niya 'no panget' daw, 'danda pala talaga!' Bulol bulol pa partida pero galing sa puso yung 'Ate Rona' nyan shaa. Welcome ka sa'min, Boss!" <br/> 😊😊
                 </p>
                 <p className="text-[#7289da] text-[10px] mt-2 font-black uppercase">
                   (Sound On! 🔊)

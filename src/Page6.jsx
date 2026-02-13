@@ -18,7 +18,7 @@ function Page6({ onNext, onBack }) {
       id: 'mad', 
       label: "OPEN WHEN YOU'RE MAD...", 
       image: jayb, 
-      text: "Isang ngiting Jay.B lang para sa galit na Boss Rona! 😊",
+      text: "Isang ngiting Jay.B lang para sa galit na boss koo! 😊",
       type: 'image'
     },
     { 
@@ -32,7 +32,7 @@ function Page6({ onNext, onBack }) {
       id: 'missme', 
       label: "OPEN IF YOU MISS ME...", 
       image: mingyu, 
-      text: "HAHAHHAHAH ANG HOT KO NOH BOSS? 😛", 
+      text: "HAHAHHAHAH ANG HOT KO NOH, UGHHH! 🥵", 
       type: 'joke' 
     }
   ];

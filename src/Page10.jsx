@@ -35,15 +35,15 @@ function Page10({ onNext, onBack }) {
       <p>
         &nbsp; &nbsp; &nbsp; &nbsp; HAHAHAHA! Sige, deal 'yan. Tabi kami ni Tito matulog habang kinukwento ko sa kanya kung gaano ko ka-mahal... at kung gaano ko gustong pakasalan ang nag-iisa at sobrang ganda niyang anak. (Kala mo ah! 😝)
 
-        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa Quezon City at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin, hindi lang sa Tanza kundi dito sa buong Cavite (HAHAHAHA 😝). Manifesting 'yan! ✨
+        Pero seryoso Boss, hoping ako na sa susunod, malibot natin ang mga pasyalan dyan sa Quezon City at yung mga napuntahan mo na. At soon, kung papayag ka... sa kinalakihan mo namang lugar tayo gagala, at ikaw naman din ang igagala ko dito sa lugar namin, hindi lang sa Tanza kundi dito sa buong Cavite (HAHAHAHA 😝). Manifesting yann! ✨
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam mo naman Boss, may 666 talaga sa IGN ko at may pagka-demonyo ako minsan (sa laro lang talaga! 😊), pero nung nakilala kita... napadasal ako nang totoo. Sabi ko, "Lord, kung siya na talaga... tiklop na po ako. Siya na po ang Boss ko forever." Naniniwala na ako sa forever, basta ikaw ang kasama... Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e.. ikaw na talaga. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
+        &nbsp; &nbsp; &nbsp; &nbsp; Kaya lubos akong nagpapasalamat kay God dahil nakakilala ako ng isang babaeng maldita at topakin. Alam mo namann, may '666' talaga sa IGN ko at may pagka-demonyo ako minsan (sa laro lang talaga! 😊), pero nung nakilala kita... napadasal ako nang totoo. Sabi ko, "Lord, kung siya na talaga... tiklop na po ako. Siya na po ang Boss ko forever." Naniniwala na ako sa forever, basta ikaw ang kasama... Alam kong manhater ka (dati 😝) at may sarili kang mundo minsan, pero wala e.. ikaw na talaga. Yung nakaka-adik mong halimuyak, yung mukha mong sobrang ganda at sobrang cute tapos sinabayan pa ng maganda mong makeup na bagay na bagay sayo... at lalo na yung buhok mong napakaganda at bagsak na bagsak, na lalong nagpapatingkad sa mukha mo—sobrang lakas ng dating sakin. (Nababaliw na ko Boss, pigilan mo ko, aaaa!) Yung mga ngiti at tawa mo na hindi ko malimutan hanggang ngayon at yung pagiging morena mo na talagang bumagay sa pagiging maldita mo—ikaw na ikaw. Wala akong masabi sa kagandahan mo Boss, to the point na gusto lang kita titigan ng matagal. 🥺
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Tsaka yung boses mo... Sa tagal na nating naglalaro na naka-open mic at nag-v-vm tayo, matagal ko nang gusto sabihin sa'yo na sobrang lambing. Di ko malaman kung bumagay ba sa pagiging maldita mo Boss, pero ang sarap pakinggan talaga lalo na nung nag-uusap tayo. For sure magaling ka kumanta noh? Sample nga ng isang <b>'Cruel Summer'</b> ni Taylor Swift dyan! 😝
+        &nbsp; &nbsp; &nbsp; &nbsp; Tsaka yung boses mo... Sa tagal na nating naglalaro na naka-open mic, nag-v-vm at may mga times na nagca-call tayo, matagal ko nang gusto sabihin sa'yo na sobrang lambing. Di ko malaman kung bumagay ba sa pagiging maldita mo Boss, pero ang sarap pakinggan talaga lalo na nung nag-uusap tayo. For sure magaling ka kumanta noh? Sample nga ng isang <b>'Cruel Summer'</b> ni Taylor Swift dyan! 😝
       </p>
 
       <p>
@@ -76,7 +76,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Basta tandaan mo, nandito lang ako palagi sa tabi mo kahit anong mangyari. Laging validated ang feelings mo—pagod ka man, malungkot, o tinotopak. Hindi ka naging abala at hinding-hindi ka magiging abala sakin.
+        &nbsp; &nbsp; &nbsp; &nbsp; Basta tandaan mo, nandito lang ako palagi sa tabi mo kahit anong mangyari. Kung kailangan mo ng tulong o kahit taga-pakinig lang, wag kang mahihiyang magsabi sakin. Hati tayo sa problema, okay? Laging validated ang feelings mo—pagod ka man, malungkot, o tinotopak. Hindi ka naging abala at hinding-hindi ka magiging abala sakin.
       </p>
 
       <p>
@@ -112,7 +112,7 @@ function Page10({ onNext, onBack }) {
       </p>
 
       <p>
-        &nbsp; &nbsp; &nbsp; &nbsp; Salamat kasi hinayaan mong yakapin kita, salamat kasi unti-unti kang nagtitiwala. Huwag ka mag-alala, safe ka sakin. Akin ka lang, Boss.
+        &nbsp; &nbsp; &nbsp; &nbsp; Salamat kasi hinayaan mong yakapin kita, at salamat kasi unti-unti kang nagtitiwala. Pero alam mo, iba yung yakap na yun e. Hindi siya normal na hug lang. Nung niyakap kita, parang huminto yung oras. Ramdam na ramdam ko yung peace of mind na matagal ko nang hinahanap. Yung pakiramdam na parang ayoko nang bumitaw at ayoko nang humiwalay pa, kasi narealize ko na sa mga bisig mo... nahanap ko na yung tahanan ko. Ibang-iba sa lahat ng naramdaman ko noon. Sa'yo lang ako nakaramdam ng ganung klaseng pahinga at security. Huwag ka mag-alala, safe ka sakin. Akin ka lang, Boss.
       </p>
 
       <p className="font-bold mt-2">
