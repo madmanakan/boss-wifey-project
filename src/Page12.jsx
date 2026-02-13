@@ -22,7 +22,7 @@ Naalala ko na may tinago akong letter sa discord archive ko.
 Isang letter na sinulat ko noong Feb 2023... Ang mismong buwan kung kailan tayo pinagtagpo sa Litmatch. Isang araw bago mag-Valentine's.
 Lasing ako nun. Tahimik. Malungkot. Nag-iisa.
 
-Pero bigla akong napangiti...
+Pero habang binabasa ko to ulit.. bigla akong napangiti.
 Dahil hindi ko inakala na tutuparin pala ni God ang hiling ko sa dilim na 'yun.
 
 Kaya eto, gusto ko mabasa mo ito dahil ikaw na ikaw pala ang hinihiling ko sa kanya. 
